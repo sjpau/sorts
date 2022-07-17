@@ -1,4 +1,4 @@
-module github.com/sjpau/sorting-algorithms-visualization
+module github.com/sjpau/sorts
 
 go 1.18
 
