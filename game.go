@@ -2,11 +2,13 @@ package main
 
 import (
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/sjpau/sorts/composer"
 	"golang.org/x/image/colornames"
 )
 
 type Game struct {
-	fullscreen bool
+	sceneScreen *ebiten.Image
+	fullscreen  bool
 }
 
 func (self *Game) Update() error {
@@ -22,6 +24,9 @@ func (self *Game) Update() error {
 }
 
 func (self *Game) Draw(screen *ebiten.Image) {
+	if self.sceneScreen == nil {
+		self.sceneScreen = ebiten.NewImage(composer.Width, composer.Height)
+	}
 	screen.Fill(colornames.White)
 }
 
