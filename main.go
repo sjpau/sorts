@@ -8,6 +8,7 @@ import (
 
 func main() {
 	ebiten.SetWindowResizable(true)
+	ebiten.SetWindowTitle("Sorting Algorithms")
 	ebiten.SetFPSMode(ebiten.FPSModeVsyncOffMaximum)
 	if err := ebiten.RunGame(NewGame()); err != nil {
 		log.Fatal(err)
