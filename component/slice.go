@@ -23,11 +23,13 @@ type Matrix struct {
 func NewSlice(length int) []*Element {
 	self := make([]*Element, length)
 	for i := range self {
+		rngv := rand.Intn(composer.Height) // here might be a hiccup
 		self[i] = &Element{
 			index: i,
+			value: rngv,
 			this: &Object{
 				X:      i,
-				Y:      rand.Intn(composer.Height), // here might be a hiccup
+				Y:      rngv,
 				Width:  1,
 				Height: 1,
 				Image:  ebiten.NewImage(1, 1),
