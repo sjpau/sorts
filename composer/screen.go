@@ -1,6 +1,6 @@
 package composer
 
 const (
-	Width  = 640
-	Height = 360
+	Width  = 800
+	Height = 800
 )
