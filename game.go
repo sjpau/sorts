@@ -5,12 +5,14 @@ import (
 	"math"
 
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/sjpau/sorts/component"
 	"github.com/sjpau/sorts/composer"
 	"golang.org/x/image/colornames"
 )
 
 type Game struct {
 	sceneScreen *ebiten.Image
+	matrix      *component.Matrix
 	fullscreen  bool
 }
 
@@ -22,7 +24,9 @@ func (self *Game) Update() error {
 		self.fullscreen = true
 		ebiten.SetFullscreen(!ebiten.IsFullscreen())
 	}
-
+	if self.matrix == nil {
+		self.matrix = component.NewMatrix(0)
+	}
 	return nil
 }
 
@@ -63,6 +67,9 @@ func (self *Game) Draw(screen *ebiten.Image) {
 	}
 	screen.Fill(colornames.Grey)
 	screen.DrawImage(self.sceneScreen, o)
+	if self.matrix != nil {
+		self.matrix.Draw(self.sceneScreen)
+	}
 }
 
 func (self *Game) Layout(w, h int) (int, int) {

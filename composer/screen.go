@@ -2,5 +2,5 @@ package composer
 
 const (
 	Width  = 800
-	Height = 800
+	Height = 400
 )
