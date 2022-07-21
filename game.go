@@ -1,6 +1,7 @@
 package main
 
 import (
+	"container/list"
 	"image/color"
 	"math"
 
@@ -12,7 +13,7 @@ import (
 
 type Game struct {
 	sceneScreen *ebiten.Image
-	matrix      *component.Matrix
+	matrix      *list.List
 	fullscreen  bool
 }
 
@@ -25,7 +26,13 @@ func (self *Game) Update() error {
 		ebiten.SetFullscreen(!ebiten.IsFullscreen())
 	}
 	if self.matrix == nil {
-		self.matrix = component.NewMatrix(0)
+		self.matrix = component.NewList(composer.Width)
+	}
+	if self.matrix != nil {
+		for e := self.matrix.Front(); e != nil; e = e.Next() {
+			elem := e.Value.(component.Element)
+			elem.Update()
+		}
 	}
 	return nil
 }
@@ -68,7 +75,11 @@ func (self *Game) Draw(screen *ebiten.Image) {
 	screen.Fill(colornames.Grey)
 	screen.DrawImage(self.sceneScreen, o)
 	if self.matrix != nil {
-		self.matrix.Draw(self.sceneScreen)
+		for e := self.matrix.Front(); e != nil; e = e.Next() {
+			elem := e.Value.(component.Element)
+			elem.Update()
+			elem.Draw(self.sceneScreen)
+		}
 	}
 }
 
