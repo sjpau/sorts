@@ -1,30 +1,27 @@
 package component
 
 import (
-	"container/list"
-
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/sjpau/sorts/misc"
 	"golang.org/x/image/colornames"
 )
 
 type Element struct {
 	Body  Object
 	Value int
+	Index int
 }
 
-func NewList(length int) *list.List {
-	self := list.New()
-	rngv := misc.RandomUniqueSlice(length)
+func NewMatrix(length int) []Element {
+	self := make([]Element, length)
 	for i := 0; i < length; i++ {
 		tmp := Element{
 			Body: Object{},
 		}
-		tmp.Value = rngv[i]
+		tmp.Index = i
 		tmp.Body.X = i
 		tmp.Body.Image = ebiten.NewImage(1, 1)
 		tmp.Body.Image.Fill(colornames.White)
-		self.PushBack(tmp)
+		self[i] = tmp
 	}
 	return self
 }
