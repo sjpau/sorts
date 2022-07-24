@@ -14,18 +14,10 @@ type Game struct {
 	sceneScreen *ebiten.Image
 	matrix      []component.Element
 	rngvslice   []int
-	fullscreen  bool
 	sort        misc.SortStatus
 }
 
 func (self *Game) Update() error {
-	f := ebiten.IsKeyPressed(ebiten.KeyF)
-	if !f {
-		self.fullscreen = false
-	} else if !self.fullscreen {
-		self.fullscreen = true
-		ebiten.SetFullscreen(!ebiten.IsFullscreen())
-	}
 	if self.matrix == nil {
 		self.matrix = component.NewMatrix(composer.Width)
 	}
