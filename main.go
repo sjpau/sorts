@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/sjpau/sorts/composer"
 )
 
 func init() {
@@ -15,7 +16,7 @@ func init() {
 func main() {
 	ebiten.SetWindowResizable(true)
 	ebiten.SetWindowTitle("Sorting Algorithms")
-	ebiten.SetFPSMode(ebiten.FPSModeVsyncOffMaximum)
+	ebiten.SetWindowSize(composer.Width, composer.Height)
 	if err := ebiten.RunGame(NewGame()); err != nil {
 		log.Fatal(err)
 	}
