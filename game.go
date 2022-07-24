@@ -1,20 +1,22 @@
 package main
 
 import (
-	"container/list"
 	"image/color"
 	"math"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/sjpau/sorts/component"
 	"github.com/sjpau/sorts/composer"
+	"github.com/sjpau/sorts/misc"
 	"golang.org/x/image/colornames"
 )
 
 type Game struct {
 	sceneScreen *ebiten.Image
-	matrix      *list.List
+	matrix      []component.Element
+	rngvslice   []int
 	fullscreen  bool
+	sort        misc.SortStatus
 }
 
 func (self *Game) Update() error {
@@ -26,13 +28,18 @@ func (self *Game) Update() error {
 		ebiten.SetFullscreen(!ebiten.IsFullscreen())
 	}
 	if self.matrix == nil {
-		self.matrix = component.NewList(composer.Width)
+		self.matrix = component.NewMatrix(5)
 	}
-	if self.matrix != nil {
-		for e := self.matrix.Front(); e != nil; e = e.Next() {
-			elem := e.Value.(component.Element)
-			elem.Update()
-		}
+	if self.rngvslice == nil {
+		self.rngvslice = misc.RandomUniqueSlice(5)
+	}
+	if ebiten.IsKeyPressed(ebiten.KeySpace) {
+		misc.Shuffle(self.rngvslice)
+	}
+	l := len(self.rngvslice)
+	for i := 0; i < l; i++ {
+		self.matrix[i].Value = self.rngvslice[i]
+		self.matrix[i].Update()
 	}
 	return nil
 }
@@ -74,12 +81,9 @@ func (self *Game) Draw(screen *ebiten.Image) {
 	}
 	screen.Fill(colornames.Grey)
 	screen.DrawImage(self.sceneScreen, o)
-	if self.matrix != nil {
-		for e := self.matrix.Front(); e != nil; e = e.Next() {
-			elem := e.Value.(component.Element)
-			elem.Update()
-			elem.Draw(self.sceneScreen)
-		}
+	l := len(self.rngvslice)
+	for i := 0; i < l; i++ {
+		self.matrix[i].Draw(self.sceneScreen)
 	}
 }
 
