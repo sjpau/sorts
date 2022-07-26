@@ -23,7 +23,7 @@ func main() {
 }
 
 func NewGame() *Game {
-	g := &Game{}
-	g.sort = -1
-	return g
+	self := &Game{}
+	self.sorting = false
+	return self
 }
