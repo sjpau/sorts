@@ -1,7 +1,6 @@
 package algorithm
 
 import (
-	"fmt"
 	"sort"
 	"time"
 )
@@ -22,13 +21,11 @@ func Bubble(arr []int, delay time.Duration) {
 					i = 0
 				} else {
 					i++
-					fmt.Println("i", i) //800
 				}
 				if j == length-i-1 {
 					j = 0
 				} else {
 					j++
-					fmt.Println("j", j) //799
 				}
 			}
 		}
