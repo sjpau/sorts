@@ -28,6 +28,7 @@ func (self *Game) Update() error {
 	}
 	if ebiten.IsKeyPressed(ebiten.KeySpace) {
 		misc.Shuffle(self.rngvslice)
+		self.sorting = false
 	}
 	l := len(self.rngvslice)
 	for i := 0; i < l; i++ {
