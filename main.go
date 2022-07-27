@@ -14,7 +14,7 @@ func init() {
 }
 
 func main() {
-	ebiten.SetWindowResizable(true)
+	ebiten.SetWindowResizable(false)
 	ebiten.SetWindowTitle("Sorting Algorithms")
 	ebiten.SetWindowSize(composer.Width, composer.Height)
 	if err := ebiten.RunGame(NewGame()); err != nil {
