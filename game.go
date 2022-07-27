@@ -36,6 +36,10 @@ func (self *Game) Update() error {
 		self.matrix[i].Update()
 	}
 	if inpututil.IsKeyJustPressed(ebiten.Key1) && self.sorting == false {
+		go algorithm.Gnome(self.rngvslice, 1*time.Millisecond)
+		self.sorting = true
+	}
+	if inpututil.IsKeyJustPressed(ebiten.Key2) && self.sorting == false {
 		go algorithm.Bubble(self.rngvslice, 1*time.Millisecond)
 		self.sorting = true
 	}
