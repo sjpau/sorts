@@ -1,6 +1,11 @@
 package algorithm
 
-import "time"
+import (
+	"time"
+
+	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/inpututil"
+)
 
 func Cocktail(arr []int, delay time.Duration) {
 	last := len(arr) - 1
@@ -25,6 +30,9 @@ func Cocktail(arr []int, delay time.Duration) {
 		if !flag {
 			return
 		}
-		time.Sleep(delay)
+		if inpututil.IsKeyJustPressed(ebiten.KeySpace) {
+			break
+		}
+		time.Sleep(2 * delay)
 	}
 }
