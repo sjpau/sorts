@@ -16,6 +16,9 @@ func Shell(arr []int, delay time.Duration) {
 		for i := tag; i < len(arr); i++ {
 			j, tmp := i, arr[i]
 			for ; j >= tag && arr[j-tag] > tmp; j -= tag {
+				if inpututil.IsKeyJustPressed(ebiten.KeySpace) {
+					break
+				}
 				arr[j] = arr[j-tag]
 				time.Sleep(delay)
 			}
