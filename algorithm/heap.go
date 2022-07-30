@@ -3,6 +3,9 @@ package algorithm
 import (
 	"sort"
 	"time"
+
+	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/inpututil"
 )
 
 func Heap(list sort.Interface, delay time.Duration) {
@@ -11,11 +14,17 @@ func Heap(list sort.Interface, delay time.Duration) {
 
 	for start = (list.Len() - 2) / 2; start >= 0; start-- {
 		SetHeap(list, start, list.Len()-1)
+		if inpututil.IsKeyJustPressed(ebiten.KeySpace) {
+			break
+		}
 		time.Sleep(delay)
 	}
 	for end = list.Len() - 1; end > 0; end-- {
 		list.Swap(0, end)
 		SetHeap(list, 0, end-1)
+		if inpututil.IsKeyJustPressed(ebiten.KeySpace) {
+			break
+		}
 		time.Sleep(delay)
 	}
 }
