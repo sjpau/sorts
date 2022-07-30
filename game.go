@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -17,9 +18,18 @@ type Game struct {
 	matrix      []component.Element
 	rngvslice   []int
 	sorting     bool
+	fullscreen  bool
 }
 
 func (self *Game) Update() error {
+	fullscreen := ebiten.IsKeyPressed(ebiten.KeyF)
+	if !fullscreen {
+		self.fullscreen = false
+	} else if !self.fullscreen {
+		self.fullscreen = true
+		ebiten.SetFullscreen(!ebiten.IsFullscreen())
+	}
+	fmt.Println(self.fullscreen)
 	if self.matrix == nil {
 		self.matrix = component.NewMatrix(composer.Width)
 	}
@@ -36,11 +46,11 @@ func (self *Game) Update() error {
 		self.matrix[i].Update()
 	}
 	if inpututil.IsKeyJustPressed(ebiten.Key1) && self.sorting == false {
-		go algorithm.Selection(self.rngvslice, 1*time.Millisecond)
+		go algorithm.Selection(self.rngvslice, 10*time.Millisecond)
 		self.sorting = true
 	}
 	if inpututil.IsKeyJustPressed(ebiten.Key2) && self.sorting == false {
-		go algorithm.Gnome(self.rngvslice, 1*time.Millisecond)
+		go algorithm.Gnome(self.rngvslice, 10*time.Millisecond)
 		self.sorting = true
 	}
 	if inpututil.IsKeyJustPressed(ebiten.Key3) && self.sorting == false {
@@ -53,8 +63,15 @@ func (self *Game) Update() error {
 func (self *Game) Draw(screen *ebiten.Image) {
 	screen.Fill(colornames.Black)
 	l := len(self.rngvslice)
+	marginX := 0
+	marginY := 0
+	if !self.fullscreen {
+		w, h := screen.Size()
+		marginX = (w - composer.Width) / 2
+		marginY = (h - composer.Height) / 2
+	}
 	for i := 0; i < l; i++ {
-		self.matrix[i].Draw(screen)
+		self.matrix[i].Draw(screen, float64(marginX), float64(marginY))
 	}
 }
 

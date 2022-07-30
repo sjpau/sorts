@@ -30,9 +30,9 @@ func (self *Element) Update() {
 	self.Body.Y = self.Value
 }
 
-func (self *Element) Draw(screen *ebiten.Image) {
+func (self *Element) Draw(screen *ebiten.Image, marginX, marginY float64) {
 	o := &ebiten.DrawImageOptions{}
 	o.GeoM.Scale(1, 1)
-	o.GeoM.Translate(float64(self.Body.X), float64(self.Body.Y))
+	o.GeoM.Translate(marginX+float64(self.Body.X), marginY+float64(self.Body.Y))
 	screen.DrawImage(self.Body.Image, o)
 }
