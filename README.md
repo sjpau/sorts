@@ -2,7 +2,8 @@
 Simple visualization of sorting algorithms.
 
 ### It's not a benchmark
-This program is created strictly for visual appeal. It does not compare real-world complexities of implemented algorithms and does not provide benchmarking tools.
+This program is created strictly for visual appeal. 
+It does not compare real-world complexities of implemented algorithms and does not provide benchmarking tools.
 
 ### Controls
 Sorting algorithms are numbered as described below.
@@ -17,5 +18,13 @@ Press SPACE to randomize matrix.
 6 - Comb sort
 7 - Quick sort
 8 - Shell sort
+9 - The Greatest Sorting Algorithm Known to Humankind
 
+### Installation
 
+`go install github.com/sjpau/sorts@latest`
+
+### Compile manually
+
+`go get github.com/sjpau/sorts`
+`go build .` in the code directory
