@@ -30,6 +30,7 @@ func Gnome(arr []int, delay time.Duration) {
 			}
 		}
 	}()
+
 	for !sort.IntsAreSorted(arr) {
 		flag = true
 		if inpututil.IsKeyJustPressed(ebiten.KeySpace) {

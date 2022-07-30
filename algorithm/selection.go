@@ -27,6 +27,7 @@ func Selection(arr []int, delay time.Duration) {
 			}
 		}
 	}()
+
 	var n = len(arr)
 	for !sort.IntsAreSorted(arr) {
 		if inpututil.IsKeyJustPressed(ebiten.KeySpace) {

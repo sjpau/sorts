@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -29,7 +28,6 @@ func (self *Game) Update() error {
 		self.fullscreen = true
 		ebiten.SetFullscreen(!ebiten.IsFullscreen())
 	}
-	fmt.Println(self.fullscreen)
 	if self.matrix == nil {
 		self.matrix = component.NewMatrix(composer.Width)
 	}
@@ -46,11 +44,11 @@ func (self *Game) Update() error {
 		self.matrix[i].Update()
 	}
 	if inpututil.IsKeyJustPressed(ebiten.Key1) && self.sorting == false {
-		go algorithm.Selection(self.rngvslice, 10*time.Millisecond)
+		go algorithm.Selection(self.rngvslice, 5*time.Millisecond)
 		self.sorting = true
 	}
 	if inpututil.IsKeyJustPressed(ebiten.Key2) && self.sorting == false {
-		go algorithm.Gnome(self.rngvslice, 10*time.Millisecond)
+		go algorithm.Gnome(self.rngvslice, 1*time.Millisecond)
 		self.sorting = true
 	}
 	if inpututil.IsKeyJustPressed(ebiten.Key3) && self.sorting == false {

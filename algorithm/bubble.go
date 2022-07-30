@@ -1,7 +1,6 @@
 package algorithm
 
 import (
-	"sort"
 	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -19,21 +18,27 @@ func Bubble(arr []int, delay time.Duration) {
 			case <-done:
 				return
 			case <-ticker.C:
-				if i >= length-1 {
-					i = 0
+				if i > 0 {
+					i--
 				} else {
-					i++
 				}
 			}
 		}
 	}()
-	for !sort.IntsAreSorted(arr) {
-		if inpututil.IsKeyJustPressed(ebiten.KeySpace) {
-			done <- true
-			break
-		}
-		if i != length-1 && arr[i] > arr[i+1] {
-			arr[i], arr[i+1] = arr[i+1], arr[i]
+
+	sorted := false
+	for !sorted {
+		sorted = true
+		for i = length - 1; i > 0; {
+			if arr[i] < arr[i-1] {
+				arr[i], arr[i-1] = arr[i-1], arr[i]
+				sorted = false
+			}
+
+			if inpututil.IsKeyJustPressed(ebiten.KeySpace) {
+				done <- true
+				break
+			}
 		}
 	}
 	done <- true
