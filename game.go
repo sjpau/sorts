@@ -64,6 +64,10 @@ func (self *Game) Update() error {
 		go algorithm.Cocktail(self.rngvslice, 5*time.Millisecond)
 		self.sorting = true
 	}
+	if inpututil.IsKeyJustPressed(ebiten.Key6) && self.sorting == false {
+		go algorithm.Comb(self.rngvslice, 5*time.Millisecond)
+		self.sorting = true
+	}
 	return nil
 }
 
