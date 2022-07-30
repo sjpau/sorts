@@ -1,11 +1,19 @@
 package algorithm
 
-import "time"
+import (
+	"time"
+
+	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/inpututil"
+)
 
 func Quick(arr []int, delay time.Duration) {
 	var pex func(int, int)
 	pex = func(lower, upper int) {
 		for {
+			if inpututil.IsKeyJustPressed(ebiten.KeySpace) {
+				break
+			}
 			time.Sleep(delay)
 			switch upper - lower {
 			case -1, 0:
@@ -22,6 +30,9 @@ func Quick(arr []int, delay time.Duration) {
 			up := upper
 		outer:
 			for {
+				if inpututil.IsKeyJustPressed(ebiten.KeySpace) {
+					break
+				}
 				time.Sleep(delay)
 				for lp < upper && !(b < arr[lp]) {
 					lp++
