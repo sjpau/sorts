@@ -21,6 +21,9 @@ func Comb(arr []int, delay time.Duration) {
 				arr[i], arr[i+gap] = arr[i+gap], arr[i]
 				flag = true
 				time.Sleep(delay)
+				if inpututil.IsKeyJustPressed(ebiten.KeySpace) {
+					break
+				}
 			}
 			i++
 			if i+gap >= len(arr) {
