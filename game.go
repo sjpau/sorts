@@ -72,6 +72,10 @@ func (self *Game) Update() error {
 		go algorithm.Quick(self.rngvslice, 5*time.Millisecond)
 		self.sorting = true
 	}
+	if inpututil.IsKeyJustPressed(ebiten.Key8) && self.sorting == false {
+		go algorithm.Shell(self.rngvslice, 5*time.Millisecond)
+		self.sorting = true
+	}
 	return nil
 }
 
