@@ -10,15 +10,24 @@ Sorting algorithms are numbered as described below.
 Press SPACE to randomize matrix.
 
 ### Sorting algorithms
-*1 - Selection sort
-*2 - Gnome sort
-*3 - Bubble sort
-*4 - Heap sort
-*5 - Cocktail shaker sort
-*6 - Comb sort
-*7 - Quick sort
-*8 - Shell sort
-*9 - The Greatest Sorting Algorithm Known to Humankind
+
+1 - Selection sort
+
+2 - Gnome sort
+
+3 - Bubble sort
+
+4 - Heap sort
+
+5 - Cocktail shaker sort
+
+6 - Comb sort
+
+7 - Quick sort
+
+8 - Shell sort
+
+9 - The Greatest Sorting Algorithm Known to Humankind
 
 ### Installation
 
