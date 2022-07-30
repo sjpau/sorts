@@ -1,6 +1,7 @@
 package main
 
 import (
+	"sort"
 	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -53,6 +54,10 @@ func (self *Game) Update() error {
 	}
 	if inpututil.IsKeyJustPressed(ebiten.Key3) && self.sorting == false {
 		go algorithm.Bubble(self.rngvslice, 1*time.Millisecond)
+		self.sorting = true
+	}
+	if inpututil.IsKeyJustPressed(ebiten.Key4) && self.sorting == false {
+		go algorithm.Heap(sort.IntSlice(self.rngvslice), 5*time.Millisecond)
 		self.sorting = true
 	}
 	return nil
