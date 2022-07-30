@@ -49,11 +49,11 @@ func (self *Game) Update() error {
 		self.sorting = true
 	}
 	if inpututil.IsKeyJustPressed(ebiten.Key2) && self.sorting == false {
-		go algorithm.Gnome(self.rngvslice, 1*time.Millisecond)
+		go algorithm.Gnome(self.rngvslice, 5*time.Millisecond)
 		self.sorting = true
 	}
 	if inpututil.IsKeyJustPressed(ebiten.Key3) && self.sorting == false {
-		go algorithm.Bubble(self.rngvslice, 1*time.Millisecond)
+		go algorithm.Bubble(self.rngvslice, 5*time.Millisecond)
 		self.sorting = true
 	}
 	if inpututil.IsKeyJustPressed(ebiten.Key4) && self.sorting == false {

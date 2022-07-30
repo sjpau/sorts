@@ -1,7 +1,6 @@
 package algorithm
 
 import (
-	"sort"
 	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -9,40 +8,21 @@ import (
 )
 
 func Selection(arr []int, delay time.Duration) {
-	ticker := time.NewTicker(delay)
-	done := make(chan bool)
-	i := 0
 	length := len(arr)
-	go func() {
-		for {
-			select {
-			case <-done:
-				return
-			case <-ticker.C:
-				if i >= length-1 {
-					i = 0
-				} else {
-					i++
-				}
+	last := length - 1
+	for i := 0; i < last; i++ {
+		aMin := arr[i]
+		iMin := i
+		for j := i + 1; j < len(arr); j++ {
+			if arr[j] < aMin {
+				aMin = arr[j]
+				iMin = j
 			}
 		}
-	}()
-
-	var n = len(arr)
-	for !sort.IntsAreSorted(arr) {
+		arr[i], arr[iMin] = aMin, arr[i]
 		if inpututil.IsKeyJustPressed(ebiten.KeySpace) {
-			done <- true
 			break
 		}
-		if i < n {
-			var minIdx = i
-			for j := i; j < n; j++ {
-				if arr[j] < arr[minIdx] {
-					minIdx = j
-				}
-			}
-			arr[i], arr[minIdx] = arr[minIdx], arr[i]
-		}
+		time.Sleep(delay)
 	}
-	done <- true
 }
