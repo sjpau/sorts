@@ -1,6 +1,8 @@
 # sorts
 Simple visualization of sorting algorithms.
 
+![](example.gif)
+
 ### It's not a benchmark
 This program is created strictly for visual appeal. 
 It does not compare real-world complexities of implemented algorithms and does not provide benchmarking tools.
