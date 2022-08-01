@@ -14,11 +14,10 @@ import (
 )
 
 type Game struct {
-	sceneScreen *ebiten.Image
-	matrix      []component.Element
-	rngvslice   []int
-	sorting     bool
-	fullscreen  bool
+	matrix     []component.Element
+	rngvslice  []int
+	sorting    bool
+	fullscreen bool
 }
 
 func (self *Game) Update() error {
